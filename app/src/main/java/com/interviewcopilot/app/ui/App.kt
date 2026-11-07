@@ -48,7 +48,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.interviewcopilot.app.vm.CopilotVM
@@ -75,7 +74,7 @@ fun AppRoot(vm: CopilotVM) {
                     transitionSpec = {
                         val dir = if (targetState > initialState) 1 else -1
                         (fadeIn(tween(240)) + slideInHorizontally(
-                            spring(dampingRatio = 0.85f, stiffness = Spring.StiffnessMediumLow, visibilityThreshold = IntOffset.VisibilityThreshold)
+                            spring(dampingRatio = 0.85f, stiffness = Spring.StiffnessMediumLow)
                         ) { full -> dir * full / 10 }) togetherWith fadeOut(tween(120))
                     },
                     label = "tabs"
@@ -94,7 +93,7 @@ fun AppRoot(vm: CopilotVM) {
         AnimatedVisibility(
             visible = settings,
             enter = slideInHorizontally(
-                spring(dampingRatio = 0.9f, stiffness = Spring.StiffnessMediumLow, visibilityThreshold = IntOffset.VisibilityThreshold)
+                spring(dampingRatio = 0.9f, stiffness = Spring.StiffnessMediumLow)
             ) { it } + fadeIn(),
             exit = slideOutHorizontally(tween(220)) { it } + fadeOut(tween(200))
         ) {
